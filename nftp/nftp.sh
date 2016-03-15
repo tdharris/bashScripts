@@ -6,7 +6,8 @@ logDirectory='/var/log/nftp';
 logFilename='nftp.log';
 lftpBookmark='ftpNovell';
 
-touch $logDirectory/history.log
+mkdir -p $logDirectory # create log directory if not already existing
+touch $logDirectory/history.log # create log file
 rm `find $logDirectory -name 'history.log' -size +1M` 2>/dev/null
 
 if [ "$(ls -A $outgoingDirectory)" ]; then
