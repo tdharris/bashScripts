@@ -11,13 +11,14 @@ Notification service if any DataSync services/connectors go offline. The script 
 <li>an attachment with a copy of all the logs and other server information</li>
 </ul>
 Running the script manually displays the following and will appear in the notification email:
-```bash
-Checking for DataSync Config Engine:			    running
-Checking for DataSync Web Admin:			        running
-Checking for DataSync Connector Manager:		  running
-Checking for DataSync Engine:				          running
-Mobility Connector listening on port 443:		  true
-GroupWise Connector listening on port 4500:   true
+
+```
+Checking for DataSync Config Engine:        running
+Checking for DataSync Web Admin:            running
+Checking for DataSync Connector Manager:    running
+Checking for DataSync Engine:               running
+Mobility Connector listening on port 443:   true
+GroupWise Connector listening on port 4500: true
 ```
 
 When implemented with crontab, the script can be set to run every hour, for example. This allows an administrator to be notified of a failure before users complain. Edit the script file and replace email@address.com with the desired administrator’s email. You can likewise configure a list of email address by placing them in single quotes separated by a comma and a space – ‘email1, email2, email3′
