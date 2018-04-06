@@ -1,5 +1,5 @@
 #!/bin/bash
-outgoingDirectory='/nfsshare/public/outgoing';
+outgoingDirectory='/wrk/outgoing';
 ftpServer='ftp-internal.provo.novell.com';
 ftpServerDirectory='outgoing';
 logDirectory='/var/log/nftp';

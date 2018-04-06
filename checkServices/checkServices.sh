@@ -2,7 +2,7 @@
 PATH=$PATH:/usr/sbin/
 
 # Specify email address:
-email='user@domain.com';
+email='user@mydomain.com';
 
 # Check Services
 status=true;
@@ -52,11 +52,13 @@ checkGroupWise
 		logd="/var/log/datasync"
 	# Restart Services and create message body
 	 	rcgms stop; killall -9 python 2>/dev/null; rcpostgresql restart; rcgms start;
-		echo -e "\nThe following services were found to be in an unused or dead state on $(date):\n$failure\n\nDon't worry, DataSync services were restarted automatically.\nLog files are attached in case you want to investigate the issue.\n\nStatus of Mobility Server after restart:" > $temp/check_services.txt;
+		echo -e "\nThe following services were found to be in an unused or dead state on $(date):\n$failure\n\nDon't worry, GroupWise Mobility Services were restarted automatically.\nLog files are attached in case you want to investigate the issue.\n\nStatus of Mobility Server after restart:" > $temp/check_services.txt;
 		sleep 5;
 		status=true;
-	 	rcpostgresql status >> $temp/check_services.txt;
+		echo >> $temp/check_services.txt;
+		rcpostgresql status >> $temp/check_services.txt;
 		rcgms status >> $temp/check_services.txt;
+		echo >> $temp/check_services.txt;
 		checkMobility >> $temp/check_services.txt;
 		checkGroupWise >> $temp/check_services.txt;
 		echo -e "\nLogging Levels indicated below:" >> $temp/check_loggingLevels.txt;
@@ -83,7 +85,7 @@ checkGroupWise
 		postconf -e "message_size_limit = $sizelimit"
 		echo -e "\nCreating attachment for report..."		
 		logs_datasync="datasync_status";
-		logs_connectors="connectors/default.pipeline1.*.log";
+		logs_connectors="connectors/*-agent.log";
 		logs_configengine="configengine/configengine.log";
 		logs_syncengine="syncengine/connectorManager.log syncengine/engine.log";
 		logs_webadmin="webadmin/server.log";
@@ -108,8 +110,9 @@ checkGroupWise
 		filesize=`stat -c %s $temp/MobilityLogs.tgz`
 		if [ $filesize -lt $sizelimit ]
 			then cat $temp/check_services.txt | mail -s "WARNING: Mobility services have been restarted on $(hostname)" -a $temp/MobilityLogs.tgz $email
-			else echo -e "\nLogs not attached (> 20MB)" >> $temp/check_services.txt; cat $temp/check_services.txt | mail -s "WARNING: Mobility services have been restarted on $(hostname)" $email
+			else echo -e "\nLogs not attached (> 20MB)\nPlease investigate further, if needed, on the server." >> $temp/check_services.txt; cat $temp/check_services.txt | mail -s "WARNING: Mobility services have been restarted on $(hostname)" $email
 		fi
 	# Cleanup
 		 rm -R $temp;
 	fi
+
