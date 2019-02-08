@@ -10,3 +10,6 @@
 [submodule "misc/ssh-login-geoip-report"]
 	path = misc/ssh-login-geoip-report
 	url = https://github.com/tdharris/ssh-login-geoip-report
+[submodule "pam/pam-sshrelay-traffic"]
+	path = pam/pam-sshrelay-traffic
+	url = https://github.com/tdharris/pam-sshrelay-traffic.git
