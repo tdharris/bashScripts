@@ -1,0 +1,7 @@
+cn=user1,ou=users,o=novell
+cn=user2,ou=users,o=novell
+cn=user3,ou=users,o=novell
+cn=user4,ou=users,o=novell
+cn=user5,ou=users,o=novell
+cn=user6,ou=users,o=novell
+cn=user7,ou=users,o=novell

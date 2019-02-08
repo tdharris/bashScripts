@@ -1,0 +1,12 @@
+[submodule "certs/openssl-toolkit"]
+	path = certs/openssl-toolkit
+	url = https://github.com/tdharris/openssl-toolkit
+[submodule "collaboration/gms/dsapp"]
+	path = collaboration/gms/dsapp
+	url = https://github.com/tdharris/dsapp.git
+[submodule "misc/checkApp"]
+	path = misc/checkApp
+	url = https://github.com/tdharris/checkApp.git
+[submodule "misc/ssh-login-geoip-report"]
+	path = misc/ssh-login-geoip-report
+	url = https://github.com/tdharris/ssh-login-geoip-report

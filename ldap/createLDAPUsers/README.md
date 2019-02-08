@@ -1,4 +1,6 @@
 # Create LDAP Users
+https://www.netiq.com/communities/cool-solutions/cool_tools/create-ldap-users/
+
 This is a bash script to bulk create LDAP users and add them to a new group. It has been verified via LDAP with eDirectory, but is only intended for testing and troubleshooting purposes. Sometimes you just need a ton of users and would rather not go through the trouble of adding them all manually.
 
 Description:
