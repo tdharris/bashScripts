@@ -1,9 +1,9 @@
 #!/bin/bash
 
 # User Variables
-SERVER="tharris5.lab.novell.com"
+SERVER="localhost"
 ADMIN="admin"
-PASSWORD="novell123"
+PASSWORD="<password>"
 ORG_ID="2"
 OUTPUT_CSV="./PAM_SERVICE_STATUS_ORG_$ORG_ID.csv"
 
