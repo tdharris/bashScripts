@@ -1,4 +1,8 @@
 #!/bin/bash
+#
+# Detect missing uniqueID attribute via ldap, created ldif and prompts for automatic import to resolve.
+# Created by Tyler Harris (github.com/tdharris)
+
 rm -f userList fixed.ldf
 function askYesOrNo {
 	REPLY=""
