@@ -1,4 +1,8 @@
 #!/bin/bash
+#
+# Simple certificate management utility relying on openssl cli.
+# Deprecated in favor of https://github.com/tdharris/openssl-toolkit
+# Created by Tyler Harris (github.com/tdharris)
 function askYesOrNo {
     REPLY=""
     while [ -z "$REPLY" ] ; do
