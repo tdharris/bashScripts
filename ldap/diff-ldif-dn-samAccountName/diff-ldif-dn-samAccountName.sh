@@ -1,4 +1,8 @@
 #!/bin/bash
+#
+# Detect mismatch of dn and samAccountName attributes from ldif file input.
+# Created by Tyler Harris (github.com/tdharris)
+
 file="ldif.txt"
 
 cat "$file" | grep 'dn:\|sAMAccountName\|^$' | sed 's/^$/--/g' | while read -r line; do
