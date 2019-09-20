@@ -1,4 +1,7 @@
 #!/usr/bin/env bash
+#
+# list ciphers via openssl connection
+# Created by Tyler Harris (github.com/tdharris)
 
 # OpenSSL requires the port number.
 SERVER=$1
