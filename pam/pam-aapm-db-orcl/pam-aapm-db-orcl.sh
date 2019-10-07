@@ -54,10 +54,13 @@ function checkResult {
     local code="$1"
     local desiredCode="$2"
     local message="$3"
+    local showSuccess="$4"
 
     if [ "$code" -ne "$desiredCode" ]; then
         echo -e "\n${red}Error${def}: $message\n" && exit $code
-        else echo -e "${green}Success${def}.\n"
+        else if [ "$showSuccess" = true ]; then
+		echo -e "${green}Success${def}.\n"
+	fi
     fi
 }
 
@@ -75,10 +78,10 @@ co_result=$(curl -s --insecure -X POST -H "Authorization:Token token=$apiKey" -H
 checkResult "$?" 0 "Failed to connect to $pamServer"
 
 # Handle and parse response
-echo "co_result" | jq .
+echo "$co_result" | jq .
 checkResult "$?" 0 "Failed to parse check-out response!"
 co_status=$(echo "$co_result" | jq '.status')
-checkResult $co_status 200 "Failed to check-out credential!"
+checkResult $co_status 200 "Failed to check-out credential!" true
 co_requestid=$(echo "$co_result" | jq '.CheckOut.Request.id' | sed 's/"//g')
 co_account=$(echo "$co_result" | jq '.CheckOut.account' | sed 's/"//g')
 co_passwd=$(echo "$co_result" | jq '.CheckOut.passwd' | sed 's/"//g')
@@ -91,7 +94,7 @@ if [ "$DEBUG" = true ]; then
 fi
 
 # 2) Execute db query
-echo -e "2) Connect to db $pamdbConnector and execute query:\n"
+echo -e "\n2) Connect to db $pamdbConnector and execute query:\n"
 dockerCommand="sqlplus $co_account/$co_passwd@$pamdbConnector $sqlRunAs"
 echo -e "docker run -i --rm $dockerImage $dockerCommand <<EOF\n$sqlQuery\nEOF"
 docker run -i --rm $dockerImage $dockerCommand <<EOF
@@ -114,6 +117,6 @@ checkResult "$?" 0 "Failed to connect to $pamServer"
 echo "$ci_result" | jq .
 checkResult "$?" 0 "Failed to parse check-in response!"
 ci_status=$(echo "$ci_result" | jq '.status')
-checkResult $ci_status 200 "Failed to check-in credential!"
+checkResult $ci_status 200 "Failed to check-in credential!" true
 
 exit 0
