@@ -48,7 +48,8 @@ echo -e "\n3) Checkin credential:\n"
 ci_result=$(curl -s --insecure -X PUT -H "Authorization:Token token=$apiKey" -H "Cache-Control: no-cache" -H "Content-Type:application/json" -d '{
         "Request": {
                       "type":"PasswordCheckin",
-                      "id":"'"$co_requestid"'"
+                      "id":"'"$co_requestid"'",
+                      "runHost": "'"$pamAppl"'"
         }
 }' 'https://'$pamServer'/rest/cmdctrl/Request')
 
