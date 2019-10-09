@@ -3,7 +3,7 @@
 #
 # v1.0.0
 # Example PAM script to register an agent
-# https://github.com/tdharris/bashScripts/tree/master/pam/pam-register-agent
+# https://github.com/tdharris/bashScripts/tree/master/pam/pam-register-agent-linux
 # 
 # by Tyler Harris
 #
