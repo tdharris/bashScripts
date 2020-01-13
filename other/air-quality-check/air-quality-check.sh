@@ -1,7 +1,8 @@
 #!/bin/bash
 
 # Configuration
-recipients="tyler.harris@microfocus.com,andrew.santos@microfocus.com"
+# @param $1 - a csv of mail recipients
+recipients="$1"
 
 passConditions="rgb(0,228,0)\|rgb(255,255,0)"
 url="https://air.utah.gov/currentconditions.php?id=ln"
@@ -12,6 +13,11 @@ sendmailPath="/usr/sbin/sendmail"
 
 if ! [ -x "$(command -v $sendmailPath)" ]; then
   echo 'Error: sendmail is not installed.' >&2
+  exit 1
+fi
+
+if [ -z "$recipients" ]; then
+  echo "There are no recipients configured."
   exit 1
 fi
 
