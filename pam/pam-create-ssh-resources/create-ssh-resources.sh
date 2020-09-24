@@ -20,7 +20,7 @@ response=$(curl -s -k --insecure \
 -u $admin:$password \
 --header 'Accept: application/json' \
 -X PUT \
---data '{"Vault":{"type":"ssh","profile":101,"name":"ssh-server-'$i'","CFG":{"hkey":"tharris1.lab.novell.com,151.155.221.26 ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBCxPyAii6VIMZnQU777u0jkN1RKA08624GnuGb6+79n0PEQm+IXIYhFzw/J3RV3owSvm9cXkckgsVywHyz2jE5o=\n","host":"tharris1.lab.novell.com","port":22}}}' \
+--data '{"Vault":{"type":"ssh","profile":101,"name":"ssh-server-'$i'","CFG":{"hkey":"ssh-server-'$i',192.168.0.'$i' ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBCxPyAii6VIMZnQU777u0jkN1RKA08624GnuGb6+79n0PEQm+IXIYhFzw/J3RV3owSvm9cXkckgsVywHyz2jE5o=\n","host":"ssh-server-'$i'","port":22}}}' \
 'https://'$server'/rest/prvcrdvlt/Vault')
 
 response1Result=$(echo $response | ~/jq .status)
