@@ -8,7 +8,7 @@ set PASSWORD [lindex $argv 3]
 set timeout 10
 set PROMPT "> "
 
-spawn sftp -P $PORT "$USER@$SERVER"
+spawn sftp -o "StrictHostKeyChecking=no" -P $PORT "$USER@$SERVER"
 
 expect {
   timeout { send_user "\nERROR: Timeout Exceeded - Check Host\n"; exit 1 }
@@ -22,6 +22,7 @@ expect {
      exp_continue
   }
   "$PROMPT" {}
+  "*" {}
 }
 
 interact
