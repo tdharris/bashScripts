@@ -22,7 +22,6 @@ expect {
      exp_continue
   }
   "$PROMPT" {}
-  "*" {}
 }
 
 interact
